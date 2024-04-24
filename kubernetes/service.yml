@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-mesh
+  labels:
+    app: nginx-mesh
+spec:
+  type: ClusterIP
+  ports:
+  - name: nginx-mesh
+    port: 80
+    targetPort: 80
+  selector:
+    app: nginx-mesh

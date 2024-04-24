@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-mesh
+  labels:
+    app: nginx-mesh
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: nginx-mesh
+  template:
+    metadata:
+      labels:
+        app: nginx-mesh
+    spec:
+      containers:
+      - name: nginx
+        image: ${OKTETO_BUILD_NGINX_IMAGE}
+      dnsConfig:
+        searches:
+          - ${OKTETO_NAMESPACE}.svc.cluster.local
+          - ${OKTETO_SHARED_NAMESPACE}.svc.cluster.local
+          - svc.cluster.local
+          - cluster.local

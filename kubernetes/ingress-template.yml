@@ -1,0 +1,28 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: nginx-mesh
+spec:
+  rules:
+    - host: nginx-mesh-backend-1-${OKTETO_NAMESPACE}.${OKTETO_DOMAIN}
+      http:
+        paths:
+          - path: /
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: nginx-mesh
+                port:
+                  number: 80
+    - host: nginx-mesh-backend-2-${OKTETO_NAMESPACE}.${OKTETO_DOMAIN}
+      http:
+        paths:
+          - path: /
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: nginx-mesh
+                port:
+                  number: 80
+  tls:
+  - {}

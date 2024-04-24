@@ -1,0 +1,11 @@
+build:
+  nginx: .
+
+deploy:
+  remote: true
+  commands:
+    - envsubst < kubernetes/ingress-template.yml > kubernetes/ingress.yml
+    - rm kubernetes/ingress-template.yml
+    - envsubst < kubernetes/deployment-template.yml > kubernetes/deployment.yml
+    - rm kubernetes/deployment-template.yml
+    - kubectl apply -f kubernetes
