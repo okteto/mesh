@@ -1,18 +1,18 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx-mesh
+  name: mesh
   labels:
-    app: nginx-mesh
+    app: mesh
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: nginx-mesh
+      app: mesh
   template:
     metadata:
       labels:
-        app: nginx-mesh
+        app: mesh
     spec:
       containers:
       - name: nginx
